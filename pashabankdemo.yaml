@@ -31,6 +31,7 @@ services:
     enabled: true
     host: httpbin.httpbin.svc.cluster.local
     port: 80
+    name: pservice
     protocol: http
     read_timeout: 60000
     retries: 5
