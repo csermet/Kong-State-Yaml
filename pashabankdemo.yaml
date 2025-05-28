@@ -20,7 +20,7 @@ plugins:
         - jwt
     enabled: true
     instance_name: JWT_POC
-    name: jwtp
+    name: jwt
     protocols:
       - grpc
       - grpcs
