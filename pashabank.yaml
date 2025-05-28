@@ -37,12 +37,12 @@ spec:
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: nginx-route
+  name: nginx-service
   namespace: pashabank
 spec:
   host: pashabank-nginx.apps.ocp.demo.local
   port:
-    targetPort: 8080
+    targetPort: http
   to:
     kind: Service
     name: nginx-service
