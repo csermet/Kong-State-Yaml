@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-pashabank
+  namespace: pashabank
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-pashabank
+  template:
+    metadata:
+      labels:
+        app: nginx-pashabank
+    spec:
+      containers:
+        - name: nginx-pashabank
+          image: docker.io/nginx:latest
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+  namespace: pashabank
+spec:
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx-pashabank
+  type: ClusterIP
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: nginx-route
+  namespace: pashabank
+spec:
+  host: pashabank-nginx.apps.ocp.demo.local
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: nginx-service
+    weight: 100
+  wildcardPolicy: None
+
+
