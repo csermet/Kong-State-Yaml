@@ -4,6 +4,32 @@ _info:
   select_tags:
     - pashabank
 _workspace: CICD
+plugins:
+- config:
+    anonymous: null
+    claims_to_verify: []
+    cookie_names: []
+    header_names:
+    - authorization
+    key_claim_name: iss
+    maximum_expiration: 0
+    realm: null
+    run_on_preflight: true
+    secret_is_base64: false
+    uri_param_names:
+    - jwt
+  enabled: true
+  instance_name: JWT_POC2
+  name: jwt
+  protocols:
+  - grpc
+  - grpcs
+  - http
+  - https
+  route: pashabankroute
+  service: pashabankservice
+  tags:
+  - pashabank
 services:
   - connect_timeout: 60000
     enabled: true
