@@ -3,7 +3,7 @@ _info:
   defaults: {}
   select_tags:
     - pashabank
-_workspace: CNR
+_workspace: CICD
 plugins:
   - config:
       anonymous: null
