@@ -1,0 +1,52 @@
+_format_version: "3.0"
+_info:
+  defaults: {}
+  select_tags:
+    - pashabank
+_workspace: CNR
+plugins:
+  - config:
+      anonymous: null
+      claims_to_verify: []
+      cookie_names: []
+      header_names:
+        - authorization
+      key_claim_name: iss
+      maximum_expiration: 0
+      realm: null
+      run_on_preflight: true
+      secret_is_base64: false
+      uri_param_names:
+        - jwt
+    enabled: true
+    instance_name: JWT_POC
+    name: jwt
+    protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+services:
+  - connect_timeout: 60000
+    enabled: true
+    host: httpbin.httpbin.svc.cluster.local
+    id: 8709f461-edc5-4044-9560-29ce308f5058
+    port: 80
+    protocol: http
+    read_timeout: 60000
+    retries: 5
+    routes:
+      - https_redirect_status_code: 426
+        name: pashabankbins
+        path_handling: v0
+        paths:
+          - /pashabank
+        preserve_host: false
+        protocols:
+          - http
+          - https
+        regex_priority: 0
+        request_buffering: true
+        response_buffering: true
+        strip_path: true
+    write_timeout: 60000
